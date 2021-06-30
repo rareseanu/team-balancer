@@ -44,7 +44,7 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/favicon.svg",
+                  "replace": "src/favicon.ico",
                   "with": "src/favicon.prod.svg"
                 }
 

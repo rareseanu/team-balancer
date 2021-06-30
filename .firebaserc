@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "teams-balancer",
-    "team-balancer": "teams-balancer"
+    "default": "team-balancer-aa4ee",
+    "team-balancer": "team-balancer-aa4ee"
   }
 }
