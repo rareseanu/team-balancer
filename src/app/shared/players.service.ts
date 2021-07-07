@@ -168,12 +168,18 @@ export class PlayersService {
             // or the loser list modify the rating.
             // otherwise, just leave it as it is.
             if (winners.includes(player.name)) {
-                // improve rating (lower numerical value)
-                player.rating -= player.rating * (0.02 + difference * 0.002);
+                // improve rating (higher numerical value)
+                player.rating += player.rating * (0.02 + difference * 0.002);
+                if(player.rating > 10) {
+                    player.rating = 10;
+                }
                 return player;
             } else if (losers.includes(player.name)) {
-                // worsen rating (higher numerical value)
-                player.rating += player.rating * (0.02 + difference * 0.002);
+                // worsen rating (lower numerical value)
+                player.rating -= player.rating * (0.02 + difference * 0.002);
+                if(player.rating < 1) {
+                    player.rating = 1;
+                }
                 return player;
             } else {
                 return player;
