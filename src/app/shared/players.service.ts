@@ -112,10 +112,11 @@ export class PlayersService {
 
     createDefaultPlayer(): Player {
         // get the id.
-        const newID = Math.max.apply(
+        const newID = this.playerList.length ? Math.max.apply(
             Math,
             this.playerList.map((item) => item.id))
-            + 1;
+            + 1 : 0;
+
 
         const newName = 'new_player_' + Date.now().toFixed() + '_' + newID;
         const result = new Player(newID, newName);
