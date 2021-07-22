@@ -1,6 +1,6 @@
 {
   "name": "team-balancer",
-  "version": "0.8.8",
+  "version": "0.8.0",
   "scripts": {
     "ng": "ng",
     "start": "npm run icon && ng serve",
@@ -44,7 +44,6 @@
     "@angular/language-service": "^12.1.1",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.8",
-    "@types/node": "^13.13.5",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",

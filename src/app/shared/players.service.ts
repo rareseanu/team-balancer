@@ -129,9 +129,44 @@ export class PlayersService {
     }
 
     public savePlayersToList(playersArr: Player[], listName: string) {
-        const docRef = this.db.doc('/ratings/' + listName).ref;
+        const docRef = this.db.doc('ratings/' + listName).ref;
         const obj = { players: playersArr };
         docRef.set(obj, { merge: true });
+    }
+
+    async deleteCollection(db, collectionPath, batchSize) {
+        const collectionRef = db.collection(collectionPath).ref;
+        const query = collectionRef.orderBy('__name__').limit(batchSize);
+        return new Promise((resolve, reject) => {
+          this.deleteQueryBatch(db, query, resolve).catch(reject);
+        });
+    }
+    async deleteQueryBatch(db, query, resolve) {
+        const snapshot = await query.get();
+      
+        const batchSize = snapshot.size;
+        if (batchSize === 0) {
+          resolve();
+          return;
+        }
+
+        const batch = db.firestore.batch();
+        snapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+        await batch.commit();
+
+        this.deleteQueryBatch(db, query, resolve);
+      }
+
+    async getNumberOfDocumentsInCollection(collectionPath) {
+        let snapshot = await this.db.collection(collectionPath).get().toPromise();
+        return snapshot.size;
+    }
+
+    public async dropPlayerRatings() {
+        let size = await this.getNumberOfDocumentsInCollection('ratings');
+        await this.deleteCollection(this.db, 'ratings', size);
     }
 
     saveSinglePlayerToFirebase(player: Player) {

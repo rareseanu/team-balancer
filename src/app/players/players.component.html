@@ -7,6 +7,8 @@
 <div class="row justify-content-center">
     <!-- show the list of players on the left side -->
     <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-3 left-player-list">
+    <button _ngcontent-ueg-c32="" type="button" role="button" class="btn btn-info btn-lg mb-2"
+        (click)='onConvertRatingClicked($event)' *ngIf='canAddPlayers()'> Convert Rating</button>
         <app-player-routed-card
             *ngFor="let playerItem of players | playerFilter: searchedName; let even = even; let odd = odd"
             [player]="playerItem" [id]="playerItem.id" [ngClass]="{ odd: odd, even: even }">
