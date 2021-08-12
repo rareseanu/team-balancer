@@ -125,6 +125,21 @@ export class MatchService {
         return this.recentMatchesChangeEvent.asObservable();
     }
 
+    public async getMatchList() : Promise<Map<string, CustomPrevGame>> {
+        const matches = this.db.collection('matches/');
+        const snapshot = await matches.get();
+        
+        let matchList = new Map<string, CustomPrevGame>();
+        snapshot.forEach(doc => {
+            doc.docs.forEach(test => {
+                if(test.id !== 'recent') {
+                    matchList.set(test.id, test.data() as CustomPrevGame);
+                }
+            });
+        });
+        return matchList;
+    }
+
     /**
      * Asynchronously retrieves the match object as an Observable.
      * @param matchName The name of the match (basically: the date to be used as a key for accessing the match from the DB)

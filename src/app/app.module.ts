@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 
-import { NgbCollapseModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { AuthService } from './auth/auth.service';
 import { PlayersService } from './shared/players.service';
@@ -102,6 +102,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     AppRoutingModule,
     NgbCollapseModule,
     NgbTooltipModule,
+    NgbModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [

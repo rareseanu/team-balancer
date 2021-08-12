@@ -8,7 +8,7 @@ export class Player {
     public affinity = 0;
 
     constructor(public id: number, public name: string) {
-        this.rating = 5;
+        this.rating = 2.5;
         this.affinity = 0;
     }
 }
